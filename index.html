@@ -3,23 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iOS Version Input</title>
+    <title>iOS Emulator Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        select, button {
+            margin: 10px 0;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter iOS Version</h1>
-    <form id="iosForm">
-        <label for="iosVersion">iOS Version:</label>
-        <input type="text" id="iosVersion" name="iosVersion" required>
-        <button type="submit">Submit</button>
-    </form>
+    <h1>Find Emulators for Your iOS Version</h1>
+
+    <label for="iosVersion">Select iOS Version:</label>
+    <input type="text" id="iosVersion" name="iosVersion" required>
+    
+    <label for="console">Select Console:</label>
+    <select id="console" name="console">
+        <!-- Console options will be populated here -->
+    </select>
+    
+    <button onclick="findEmulators()">Find Emulators</button>
+
+    <div id="results"></div>
 
     <script>
-        document.getElementById("iosForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let iosVersion = document.getElementById("iosVersion").value;
-            // Code to do something with the iOS version will go here
-            alert("iOS Version entered: " + iosVersion);
-        });
+        // Function to fetch the list of emulators and populate the dropdown menu
+        async function loadConsoleList() {
+            const response = await fetch('/lists/consoles.txt');
+            const text = await response.text();
+            const lines = text.split('\n');
+            
+            // Extract unique console names from the list
+            const consoleSet = new Set();
+            lines.forEach(line => {
+                const parts = line.split(':');
+                if (parts.length > 1) {
+                    consoleSet.add(parts[0].trim());
+                }
+            });
+
+            const consoleSelect = document.getElementById('console');
+            consoleSet.forEach(console => {
+                const option = document.createElement('option');
+                option.value = console;
+                option.textContent = console;
+                consoleSelect.appendChild(option);
+            });
+        }
+
+        // Function to find and display emulators based on selected iOS version and console
+        function findEmulators() {
+            const iosVersion = document.getElementById('iosVersion').value.trim();
+            const selectedConsole = document.getElementById('console').value;
+            const resultsDiv = document.getElementById('results');
+
+            // Fetch and process the emulator list
+            fetch('/lists/consoles.txt')
+                .then(response => response.text())
+                .then(text => {
+                    const lines = text.split('\n');
+                    const matchingEmulators = [];
+
+                    lines.forEach(line => {
+                        const parts = line.split(':');
+                        if (parts.length > 1) {
+                            const console = parts[0].trim();
+                            const emulatorInfo = parts[1].trim();
+                            if (console === selectedConsole && emulatorInfo.includes(iosVersion)) {
+                                matchingEmulators.push(emulatorInfo);
+                            }
+                        }
+                    });
+
+                    // Display results
+                    if (matchingEmulators.length > 0) {
+                        resultsDiv.innerHTML = '<h2>Emulators:</h2><ul>' +
+                            matchingEmulators.map(info => `<li>${info}</li>`).join('') +
+                            '</ul>';
+                    } else {
+                        resultsDiv.innerHTML = '<h2>No emulators found for the selected options.</h2>';
+                    }
+                });
+        }
+
+        // Load the console list on page load
+        document.addEventListener('DOMContentLoaded', loadConsoleList);
     </script>
 </body>
 </html>
