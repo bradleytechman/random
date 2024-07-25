@@ -1,0 +1,122 @@
+System Specific
+
+PPSSPP: App Store
+
+Multi-Systems
+
+RetroArch: App Store
+Delta: App Store
+Ignited: git
+Provenance: git
+Folium: App Store
+Eclipse: Web-based
+
+Sony
+
+PlayStation 2
+Play!: Automated Builds
+
+PlayStation Portable
+PPSSPP: App Store, Gold Builds
+
+Nintendo
+
+NES (Famicom)
+Nesemu: git
+Gearnes: git
+
+Game Boy / Color
+GearBoy: git
+GBA4iOS: 2.1
+Game Play Color: 2.3.6
+
+Wii / GameCube
+Dolphin iOS: 3.2.1, git
+
+Nintendo DS
+iNDS: git (nds4ios derived)
+NDS4iOS: 1.3.5
+
+Sega
+
+Saturn
+Yaba Sanshiro: 2.1.2.0
+
+MasterSystem / GameGear
+GearSystem: git
+
+Dreamcast
+Flycast: Build
+
+Microsoft
+
+DOS
+iDOS: git
+nDOS: git
+
+NEC
+
+PC9801
+NP2-iOS: git
+
+PC8801
+XM8-iOS: git
+
+Motorola
+
+6609
+my6609: 1.2
+
+Sinclair
+
+ZX80/ZX81 & TS1000
+ZX81: 1.13.2
+
+Apple Inc.
+
+Macintosh 68k
+Mini vMac: latest
+BasiliskII: 31/05/2020
+
+Apple llGS
+ActiveGS: git
+
+Arcade
+
+MAME
+MAME4iOS: git
+
+Programming based
+
+Martin Magni
+Fancade: HTML51.12.4
+
+Game Engine
+
+OpenBOR-iOS: git
+Doom3-iOS: git
+
+CHIP-8 / SCHIP
+
+iPhone-Chip-8-Emulator: git
+
+Other
+
+VirtualKim: 6502 Emulator https://apps.apple.com/us/app/virtualkim-6502-emulator/id1548356829
+ScummVM: Old Game engines https://docs.scummvm.org/en/latest/other_platforms/ios.html
+UTM: Emulate via virtual machines https://getutm.app/
+
+WatchOS
+
+GameBoy Advance
+GBA4Watch
+
+GameBoy/GameBoy Color
+GIOVANNI: WatchOS 5.2 fork, Original version
+PlutoBoy: git
+
+NES
+NESEmulator: WatchOS 8 fork, Original version
+
+CHIP-8
+Chip-8-WatchOS
